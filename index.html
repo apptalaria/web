@@ -1,86 +1,1445 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Talaria - Descubre ciudades jugando</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talaria — Discover. Explore. Conquer.</title>
+  <meta name="description" content="Talaria turns every city into an adventure. Discover monuments, follow curated routes, earn achievements, and compete for city control — powered by real-world exploration." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: white;
-      text-align: center;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --neutral-900: #17194b;
+      --neutral-700: #4b4c60;
+      --neutral-500: #7d7e88;
+      --neutral-300: #c3c3c3;
+      --neutral-100: #eeeeee;
+      --white:       #ffffff;
+
+      --primary-200: #ffeff4;
+      --primary-500: #ff3d71;
+      --primary-800: #c91f52;
+
+      --secondary-200: #dfe6ff;
+      --secondary-500: #3d69fe;
+      --secondary-800: #3b57b6;
+
+      --tertiary-200: #ffe8b8;
+      --tertiary-500: #f2a415;
+      --tertiary-800: #b87a0f;
+
+      --quaternary-200: #ffd9e4;
+      --quaternary-500: #aa6175;
+
+      --quinary-200: #e0fff4;
+      --quinary-500: #00e676;
+      --quinary-600: #00a854;
+
+      --grad-primary:   linear-gradient(134.58deg, #ff3d71 40.58%, #f2a415 105.58%);
+      --grad-secondary: linear-gradient(136.08deg, #3d69fe 19.31%, #ff3d71 97.79%);
+
+      --bg:      #ffffff;
+      --bg-soft: #fafafa;
+      --bg-warm: #fff8f9;
+      --border:  #f0eef0;
+      --border2: #e8e4e8;
+
+      --shadow-sm: 0 1px 4px rgba(23,25,75,0.06);
+      --shadow-md: 0 4px 20px rgba(23,25,75,0.08);
+      --shadow-lg: 0 12px 48px rgba(23,25,75,0.10);
+      --shadow-xl: 0 24px 80px rgba(23,25,75,0.12);
+
+      --radius:    24px;
+      --radius-sm: 16px;
     }
 
-    header {
-      padding: 80px 20px 40px;
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--neutral-900);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 0;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 22px; font-weight: 800;
+      color: var(--neutral-900); text-decoration: none;
+    }
+
+    .nav-logo img { width: 42px; height: 42px; border-radius: 11px; object-fit: cover; }
+
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+
+    .nav-links a {
+      color: var(--neutral-500); text-decoration: none;
+      font-size: 15px; font-weight: 500; transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--neutral-900); }
+
+    .nav-cta {
+      background: var(--grad-primary) !important;
+      color: #fff !important;
+      padding: 10px 24px; border-radius: 50px;
+      font-weight: 700 !important; font-size: 14px !important;
+      box-shadow: 0 4px 16px rgba(255,61,113,0.28) !important;
+      transition: opacity 0.2s, transform 0.15s !important;
+    }
+
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero { padding: 130px 0 80px; position: relative; overflow: hidden; }
+
+    .hero-blob {
+      position: absolute; border-radius: 50%;
+      filter: blur(80px); pointer-events: none;
+    }
+
+    .hero-blob-1 { width: 500px; height: 500px; background: rgba(255,61,113,0.07); top: -100px; right: -150px; }
+    .hero-blob-2 { width: 400px; height: 400px; background: rgba(61,105,254,0.05); bottom: -80px; left: -100px; }
+    .hero-blob-3 { width: 280px; height: 280px; background: rgba(242,164,21,0.05); top: 30%; right: 22%; }
+
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr 420px;
+      gap: 64px; align-items: center; position: relative; z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--primary-200); border-radius: 50px;
+      padding: 5px 16px 5px 10px; margin-bottom: 24px;
+      font-size: 13px; font-weight: 600; color: var(--primary-500);
+    }
+
+    .eyebrow-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--primary-500);
+      animation: dot-pulse 2s infinite;
+    }
+
+    @keyframes dot-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.25); }
     }
 
     h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
+      font-size: clamp(40px, 5vw, 64px);
+      font-weight: 800; line-height: 1.08; letter-spacing: -1.5px;
+      margin-bottom: 20px; color: var(--neutral-900);
     }
 
-    p {
-      font-size: 18px;
-      opacity: 0.8;
-      max-width: 600px;
-      margin: 0 auto;
+    .text-grad {
+      background: var(--grad-primary);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
 
-    .btn {
-      margin-top: 30px;
-      padding: 12px 24px;
-      background: #38bdf8;
-      color: black;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
+    .hero-sub {
+      font-size: 18px; color: var(--neutral-500);
+      line-height: 1.75; margin-bottom: 36px; max-width: 480px; font-weight: 400;
     }
 
-    .section {
-      padding: 60px 20px;
-      background: #111827;
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 48px; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--grad-primary); color: #fff; text-decoration: none;
+      padding: 15px 32px; border-radius: 50px;
+      font-weight: 700; font-size: 16px; font-family: 'Poppins', sans-serif;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 8px 24px rgba(255,61,113,0.32);
     }
 
-    footer {
-      padding: 30px;
-      font-size: 12px;
-      opacity: 0.6;
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(255,61,113,0.42); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1.5px solid var(--border2); color: var(--neutral-700); text-decoration: none;
+      padding: 14px 28px; border-radius: 50px;
+      font-weight: 600; font-size: 16px; font-family: 'Poppins', sans-serif;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--primary-500); color: var(--primary-500); background: var(--primary-200); }
+
+    .hero-trust { display: flex; align-items: center; gap: 14px; }
+
+    .trust-avs { display: flex; }
+
+    .trust-av {
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 2px solid var(--white); margin-left: -8px;
+      background: var(--neutral-900); color: #fff;
+      font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .trust-av:first-child { margin-left: 0; }
+    .trust-av:nth-child(2) { background: var(--primary-500); }
+    .trust-av:nth-child(3) { background: var(--secondary-500); }
+    .trust-av:nth-child(4) { background: var(--tertiary-500); }
+
+    .trust-text { font-size: 13px; color: var(--neutral-500); }
+    .trust-text strong { color: var(--neutral-700); font-weight: 600; }
+
+    /* ── PHONE MOCKUP ── */
+    .hero-visual { position: relative; display: flex; justify-content: center; }
+    .phone-scene { position: relative; width: 260px; }
+
+    .phone-outer {
+      width: 260px; height: 520px; background: var(--neutral-900);
+      border-radius: 44px;
+      box-shadow: var(--shadow-xl), 0 0 0 1px rgba(0,0,0,0.06);
+      position: relative; overflow: hidden;
+    }
+
+    .phone-notch {
+      position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+      width: 88px; height: 26px; background: var(--neutral-900); border-radius: 16px; z-index: 10;
+    }
+
+    .phone-screen { position: absolute; inset: 7px; border-radius: 38px; overflow: hidden; background: #f8f7fb; }
+
+    .app-topbar {
+      background: #fff; padding: 44px 16px 12px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .app-city-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--neutral-500); text-transform: uppercase; }
+    .app-screen-title { font-size: 17px; font-weight: 800; color: var(--neutral-900); }
+
+    .app-ava {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--grad-primary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; color: #fff; font-weight: 700;
+    }
+
+    .app-map { height: 150px; position: relative; overflow: hidden; background: #e8efff; }
+    .map-grid-h, .map-grid-v { position: absolute; background: rgba(255,255,255,0.55); }
+    .map-grid-h { left: 0; right: 0; height: 2px; }
+    .map-grid-v { top: 0; bottom: 0; width: 2px; }
+
+    .map-pin { position: absolute; display: flex; flex-direction: column; align-items: center; }
+    .pin-circle {
+      width: 20px; height: 20px; border-radius: 50%; border: 2.5px solid #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2); animation: pin-pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pin-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+
+    .app-list { padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
+
+    .app-card {
+      background: #fff; border-radius: 12px; padding: 10px 12px;
+      display: flex; gap: 10px; align-items: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .app-card-img {
+      width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+    }
+
+    .app-card-name { font-size: 11px; font-weight: 700; color: var(--neutral-900); display: block; }
+    .app-card-sub  { font-size: 10px; color: var(--neutral-500); display: block; margin-bottom: 3px; }
+    .app-xp {
+      font-size: 9px; font-weight: 700; background: var(--quinary-200);
+      color: var(--quinary-600); padding: 2px 8px; border-radius: 20px; display: inline-block;
+    }
+
+    /* Floating cards */
+    .fc {
+      position: absolute; background: #fff;
+      border-radius: 14px; padding: 12px 16px;
+      box-shadow: var(--shadow-lg); border: 1px solid var(--border); white-space: nowrap;
+    }
+
+    .fc-1 { top: 8%; right: -158px; animation: fa 5s ease-in-out infinite; }
+    .fc-2 { top: 40%; left: -168px; animation: fb 6s ease-in-out infinite; }
+    .fc-3 { bottom: 10%; right: -148px; animation: fa 7s ease-in-out infinite; animation-delay: 1s; }
+
+    @keyframes fa { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes fb { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+
+    .fc-label { font-size: 10px; color: var(--neutral-500); margin-bottom: 3px; font-weight: 500; }
+    .fc-val   { font-size: 14px; font-weight: 700; color: var(--neutral-900); margin-bottom: 6px; }
+    .fc-tag   { font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; display: inline-block; }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 22px 0; text-align: center;
+    }
+
+    .trust-bar-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--neutral-300); margin-bottom: 16px;
+    }
+
+    .trust-items { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+
+    .trust-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 14px; color: var(--neutral-500); font-weight: 500;
+    }
+
+    .trust-dot {
+      width: 5px; height: 5px; border-radius: 50%; background: var(--neutral-300);
+      flex-shrink: 0;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 96px 0; }
+
+    .s-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--primary-500);
+      margin-bottom: 12px; display: block;
+    }
+
+    .s-title {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 800; line-height: 1.1; letter-spacing: -1px;
+      margin-bottom: 14px; color: var(--neutral-900);
+    }
+
+    .s-sub {
+      font-size: 17px; color: var(--neutral-500);
+      line-height: 1.7; max-width: 520px; font-weight: 400;
+    }
+
+    .centered { text-align: center; }
+    .centered .s-sub { margin: 0 auto; }
+
+    /* ── FEATURES ── */
+    .features-section { background: #fafafa; }
+
+    .feat-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 56px;
+      border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border);
+    }
+
+    .feat-card {
+      background: #fff; padding: 36px 28px;
+      position: relative; transition: background 0.2s; overflow: hidden;
+    }
+
+    .feat-card:hover { background: var(--bg-warm); }
+
+    .feat-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+    }
+
+    .feat-card:nth-child(1)::before { background: var(--primary-500); }
+    .feat-card:nth-child(2)::before { background: var(--secondary-500); }
+    .feat-card:nth-child(3)::before { background: var(--tertiary-500); }
+    .feat-card:nth-child(4)::before { background: var(--quaternary-500); }
+    .feat-card:nth-child(5)::before { background: var(--quinary-600); }
+    .feat-card:nth-child(6)::before { background: var(--grad-primary); }
+    .feat-card:nth-child(7)::before { background: var(--secondary-500); }
+    .feat-card:nth-child(8)::before { background: var(--tertiary-500); }
+    .feat-card:nth-child(9)::before { background: var(--primary-500); }
+
+    .feat-num {
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      color: var(--neutral-300); margin-bottom: 10px; display: block;
+    }
+
+    .feat-icon { display: block; width: 26px; height: 26px; margin-bottom: 16px; color: var(--neutral-300); }
+    .feat-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+    .feat-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--neutral-900); }
+    .feat-desc  { font-size: 14px; color: var(--neutral-500); line-height: 1.7; }
+
+    .step-icon { display: block; width: 22px; height: 22px; margin-bottom: 14px; color: var(--neutral-300); }
+    .step-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ── GAME MODES ── */
+    .modes-section { background: var(--neutral-900); }
+
+    .modes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; border-radius: var(--radius); overflow: hidden; }
+
+    .mode-card {
+      padding: 40px 32px; position: relative; overflow: hidden;
+      background: rgba(255,255,255,0.04); border: none;
+      transition: background 0.2s;
+    }
+    .mode-card:hover { background: rgba(255,255,255,0.07); }
+
+    .mode-tag {
+      display: inline-block; font-size: 10px; font-weight: 800;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 4px 14px; border-radius: 50px; margin-bottom: 28px;
+    }
+
+    .mode-name { font-size: 28px; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 12px; color: #fff; }
+    .mode-desc { font-size: 14px; color: rgba(255,255,255,0.38); line-height: 1.7; margin-bottom: 28px; }
+
+    .mode-feats { display: flex; flex-direction: column; gap: 10px; }
+    .mf { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.6); }
+    .mf svg { flex-shrink: 0; width: 15px; height: 15px; }
+    .mf.off { color: rgba(255,255,255,0.2); }
+
+    /* ── ACHIEVEMENTS ── */
+    .ach-list { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .ach-item {
+      display: flex; align-items: center; gap: 12px;
+      background: #fafafa; border: 1px solid var(--border);
+      border-radius: 12px; padding: 11px 14px;
+    }
+    .ach-item.earned { background: #fff; }
+    .ach-ico {
+      width: 34px; height: 34px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .ach-ico svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .ach-info { flex: 1; min-width: 0; }
+    .ach-name { font-size: 13px; font-weight: 700; color: var(--neutral-900); display: block; }
+    .ach-sub  { font-size: 11px; color: var(--neutral-500); display: block; margin-top: 1px; }
+    .ach-rarity {
+      font-size: 10px; font-weight: 800; letter-spacing: 0.5px;
+      padding: 3px 9px; border-radius: 50px; white-space: nowrap;
+    }
+    .rarity-common    { background: var(--neutral-100); color: var(--neutral-500); }
+    .rarity-rare      { background: var(--secondary-200); color: var(--secondary-800); }
+    .rarity-epic      { background: var(--tertiary-200); color: var(--tertiary-800); }
+    .rarity-legendary { background: var(--primary-200); color: var(--primary-800); }
+
+    /* ── BENTO ── */
+    .bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; margin-top: 56px; }
+
+    .bc {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px;
+      transition: box-shadow 0.2s; overflow: hidden;
+    }
+
+    .bc:hover { box-shadow: var(--shadow-md); }
+
+    .bc5 { grid-column: span 5; }
+    .bc7 { grid-column: span 7; }
+    .bc4 { grid-column: span 4; }
+    .bc8 { grid-column: span 8; }
+
+    .bc-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; margin-bottom: 16px; display: block;
+    }
+
+    .bc-title { font-size: 20px; font-weight: 700; margin-bottom: 10px; color: var(--neutral-900); letter-spacing: -0.2px; }
+    .bc-desc  { font-size: 14px; color: var(--neutral-500); line-height: 1.7; }
+
+    .bc-bignum {
+      font-size: clamp(52px, 5vw, 72px); font-weight: 900; line-height: 1; letter-spacing: -3px;
+      background: var(--grad-primary);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 4px;
+    }
+
+    .ach-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+
+    .ach-pill {
+      background: #fafafa; border: 1px solid var(--border);
+      border-radius: 50px; padding: 6px 14px;
+      font-size: 12px; font-weight: 600; color: var(--neutral-700);
+    }
+
+    .route-card {
+      background: #fafafa; border-radius: 14px;
+      padding: 18px 20px; margin-top: 18px;
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+
+    .route-line { display: flex; flex-direction: column; align-items: center; gap: 3px; padding-top: 2px; }
+    .rdot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--secondary-500); flex-shrink: 0; }
+    .rcon { width: 2px; height: 22px; background: var(--secondary-200); }
+
+    .rstop-name { font-size: 12px; font-weight: 600; color: var(--neutral-900); display: block; }
+    .rstop-sub  { font-size: 11px; color: var(--neutral-500); display: block; margin-bottom: 8px; }
+    .rkm        { font-size: 13px; font-weight: 700; color: var(--secondary-500); margin-left: auto; white-space: nowrap; padding-top: 2px; }
+
+    .wrapped-card {
+      background: var(--grad-primary); border-radius: 14px;
+      padding: 20px; margin-top: 18px; color: #fff;
+    }
+
+    .wrapped-year { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: 0.6; margin-bottom: 8px; }
+    .wrapped-num  { font-size: 48px; font-weight: 900; line-height: 1; }
+    .wrapped-lbl  { font-size: 13px; opacity: 0.6; margin-bottom: 14px; }
+    .wrapped-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .wchip { background: rgba(255,255,255,0.15); border-radius: 50px; padding: 4px 12px; font-size: 11px; font-weight: 600; }
+
+    /* ── CITIES ── */
+    .cities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+
+    .city-card {
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; background: #fff; transition: box-shadow 0.2s, transform 0.15s;
+    }
+
+    .city-card.live:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .city-card.soon { opacity: 0.55; }
+
+    .city-img {
+      height: 160px; position: relative; overflow: hidden;
+      display: flex; align-items: flex-end; padding: 16px;
+    }
+
+    .city-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(23,25,75,0.7) 0%, rgba(23,25,75,0.15) 60%); }
+    .city-pattern {
+      position: absolute; inset: 0;
+      background: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    .city-live-badge {
+      position: relative; z-index: 1; font-size: 11px; font-weight: 700;
+      background: #fff; color: var(--quinary-600);
+      padding: 4px 12px; border-radius: 50px;
+    }
+
+    .city-soon-badge {
+      position: relative; z-index: 1; font-size: 11px; font-weight: 600;
+      background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.85);
+      border: 1px solid rgba(255,255,255,0.25); padding: 4px 12px; border-radius: 50px;
+    }
+
+    .city-body { padding: 20px 22px 24px; }
+
+    .city-flag { font-size: 24px; margin-bottom: 8px; display: block; }
+    .city-name { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 3px; }
+    .city-country { font-size: 13px; color: var(--neutral-500); margin-bottom: 18px; }
+    .city-stats { display: flex; gap: 20px; }
+    .cstat-num { font-size: 20px; font-weight: 800; display: block; line-height: 1.1; }
+    .cstat-lbl { font-size: 11px; color: var(--neutral-500); }
+
+    /* ── HOW IT WORKS ── */
+    .how-section { background: #fafafa; }
+
+    .how-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2px; margin-top: 56px;
+      border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border);
+    }
+
+    .how-step {
+      background: #fff; padding: 36px 28px;
+      position: relative; transition: background 0.2s;
+    }
+
+    .how-step:hover { background: var(--bg-warm); }
+
+    .step-counter {
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      color: var(--neutral-300); margin-bottom: 24px; display: block;
+    }
+
+    .step-ghost {
+      font-size: 72px; font-weight: 900; color: var(--border);
+      position: absolute; top: 12px; right: 18px; line-height: 1; user-select: none;
+    }
+
+    .step-title { font-size: 17px; font-weight: 700; margin-bottom: 10px; color: var(--neutral-900); }
+    .step-desc  { font-size: 13px; color: var(--neutral-500); line-height: 1.65; }
+
+    /* ── FACTIONS ── */
+    .factions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+    .faction-card {
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      padding: 28px 22px; background: #fff;
+      transition: box-shadow 0.2s, transform 0.15s;
+      position: relative; overflow: hidden;
+    }
+
+    .faction-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    }
+
+    .faction-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+    .fc-blue::after   { background: var(--secondary-500); }
+    .fc-green::after  { background: var(--quinary-600); }
+    .fc-amber::after  { background: var(--tertiary-500); }
+    .fc-pink::after   { background: var(--primary-500); }
+
+    .faction-initial {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 900; letter-spacing: -1px;
+      margin-bottom: 18px; color: #fff;
+    }
+
+    .faction-name    { font-size: 20px; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.2px; }
+    .faction-tagline { font-size: 13px; color: var(--neutral-500); margin-bottom: 16px; line-height: 1.5; }
+
+    .faction-pill {
+      font-size: 11px; font-weight: 700;
+      padding: 4px 12px; border-radius: 50px; display: inline-block;
+    }
+
+    /* ── DOWNLOAD ── */
+    .download-section {
+      padding: 120px 0; text-align: center;
+      background: var(--neutral-900); position: relative; overflow: hidden;
+    }
+
+    .download-section::before {
+      content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 800px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,61,113,0.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .download-inner { position: relative; z-index: 1; }
+
+    .dl-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(255,255,255,0.3);
+      margin-bottom: 20px; display: block;
+    }
+
+    .dl-title {
+      font-size: clamp(36px, 5vw, 60px); font-weight: 900;
+      line-height: 1.07; letter-spacing: -1.5px; color: #fff; margin-bottom: 20px;
+    }
+
+    .dl-title span {
+      background: var(--grad-primary);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .dl-sub {
+      font-size: 17px; color: rgba(255,255,255,0.4);
+      max-width: 440px; margin: 0 auto 48px; line-height: 1.7;
+    }
+
+    .store-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+    .store-btn {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+      color: #fff; text-decoration: none;
+      padding: 14px 26px; border-radius: 16px;
+      transition: background 0.2s, transform 0.15s; font-family: 'Poppins', sans-serif;
+    }
+
+    .store-btn:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+
+    .store-logo {
+      width: 28px; height: 28px; opacity: 0.85;
+    }
+
+    .store-sub  { font-size: 11px; color: rgba(255,255,255,0.4); display: block; }
+    .store-name { font-size: 18px; font-weight: 700; display: block; line-height: 1.2; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--neutral-900); border-top: 1px solid rgba(255,255,255,0.06); padding: 40px 0; }
+
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+
+    .footer-logo { display: flex; align-items: center; gap: 9px; font-size: 18px; font-weight: 800; color: #fff; text-decoration: none; }
+    .footer-logo img { width: 28px; height: 28px; border-radius: 8px; }
+
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a { font-size: 14px; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.2); }
+
+    /* ── LANG SWITCHER ── */
+    .lang-switcher { display: flex; align-items: center; gap: 2px; background: var(--neutral-100); border-radius: 50px; padding: 3px; }
+    .lang-btn {
+      font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 700;
+      padding: 5px 13px; border-radius: 50px; border: none; cursor: pointer;
+      background: transparent; color: var(--neutral-500); transition: all 0.18s;
+    }
+    .lang-btn.active { background: #fff; color: var(--neutral-900); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { order: -1; }
+      .fc { display: none; }
+      .feat-grid { grid-template-columns: 1fr 1fr; }
+      .modes-grid { grid-template-columns: 1fr; }
+      .bento { grid-template-columns: 1fr; }
+      .bc5,.bc7,.bc4,.bc8 { grid-column: span 1; }
+      .cities-grid { grid-template-columns: 1fr 1fr; }
+      .how-grid { grid-template-columns: 1fr 1fr; }
+      .factions-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links li:not(:last-child) { display: none; }
+    }
+
+    @media (max-width: 580px) {
+      .feat-grid, .cities-grid, .how-grid, .factions-grid { grid-template-columns: 1fr; }
+      .store-btns { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
-
 <body>
 
-<header>
-  <h1>Talaria</h1>
-  <p>
-    Descubre ciudades como si fueran un juego.  
-    Explora, completa misiones y desbloquea monumentos reales.
-  </p>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="logo-icon.png" alt="Talaria" />
+        Talaria
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features" data-i18n="nav.features">Features</a></li>
+        <li><a href="#modes" data-i18n="nav.modes">Modes</a></li>
+        <li><a href="#cities" data-i18n="nav.cities">Cities</a></li>
+        <li><a href="#factions" data-i18n="nav.factions">Factions</a></li>
+        <li><a href="#download" class="nav-cta" data-i18n="nav.cta">Download free</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn" data-lang-btn="en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn active" data-lang-btn="es" onclick="setLang('es')">ES</button>
+      </div>
+    </div>
+  </nav>
 
-  <a class="btn" href="#">Empieza a explorar</a>
-</header>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="hero-blob hero-blob-3"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-eyebrow">
+            <span class="eyebrow-dot"></span>
+            <span data-i18n="hero.eyebrow">Granada &amp; Florence live now</span>
+          </div>
+          <h1 data-i18n-html="hero.h1">Travel the world<br /><span class="text-grad">Own every city with Talaria</span></h1>
+          <p class="hero-sub" data-i18n="hero.sub">
+            Talaria turns every city into a videogame. Discover monuments with audio guides, follow curated routes, earn achievements, and compete for territory — across three gameplay modes built for real explorers.
+          </p>
+          <div class="hero-actions">
+            <a href="#download" class="btn-primary" data-i18n="hero.btn_primary">Download free</a>
+            <a href="#features" class="btn-secondary" data-i18n="hero.btn_secondary">See features →</a>
+          </div>
+          <div class="hero-trust">
+            <div class="trust-avs">
+              <div class="trust-av">A</div>
+              <div class="trust-av">M</div>
+              <div class="trust-av">J</div>
+              <div class="trust-av">S</div>
+            </div>
+            <p class="trust-text" data-i18n-html="hero.trust"><strong>Thousands of explorers</strong> already conquering the world</p>
+          </div>
+        </div>
 
-<div class="section">
-  <h2>Explora el mundo</h2>
-  <p>Rutas gamificadas, retos y descubrimientos en cada ciudad.</p>
-</div>
+        <div class="hero-visual">
+          <div class="fc fc-1">
+            <div class="fc-label">Monument unlocked</div>
+            <div class="fc-val">Alhambra Palace</div>
+            <span class="fc-tag" style="background:var(--quinary-200);color:var(--quinary-600);">+120 XP</span>
+          </div>
+          <div class="fc fc-2">
+            <div class="fc-label">Route completed</div>
+            <div class="fc-val">Albaicín Walk</div>
+            <span class="fc-tag" style="background:var(--secondary-200);color:var(--secondary-800);">3 stops · 2.4 km</span>
+          </div>
+          <div class="fc fc-3">
+            <div class="fc-label">Achievement earned</div>
+            <div class="fc-val">First Conqueror</div>
+            <span class="fc-tag" style="background:var(--tertiary-200);color:var(--tertiary-800);">Rare</span>
+          </div>
 
-<div class="section">
-  <h2>Sube de nivel</h2>
-  <p>Completa misiones y conviértete en explorador avanzado.</p>
-</div>
+          <div class="phone-scene">
+            <div class="phone-outer">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <div class="app-topbar">
+                  <div>
+                    <div class="app-city-label">Granada, España</div>
+                    <div class="app-screen-title">Explorar</div>
+                  </div>
+                  <div class="app-ava">D</div>
+                </div>
 
-<footer>
-  © 2026 Talaria - All rights reserved
-</footer>
+                <div class="app-map">
+                  <div class="map-grid-h" style="top:35%"></div>
+                  <div class="map-grid-h" style="top:65%"></div>
+                  <div class="map-grid-v" style="left:33%"></div>
+                  <div class="map-grid-v" style="left:66%"></div>
+                  <div style="position:absolute;top:15%;left:15%;width:40%;height:35%;background:rgba(255,61,113,0.12);border:1.5px solid rgba(255,61,113,0.35);border-radius:40% 55% 45% 50%/50% 40% 55% 45%"></div>
+                  <div class="map-pin" style="top:22%;left:38%"><div class="pin-circle" style="background:var(--primary-500)"></div></div>
+                  <div class="map-pin" style="top:18%;left:60%"><div class="pin-circle" style="background:var(--secondary-500);animation-delay:0.8s"></div></div>
+                  <div class="map-pin" style="top:52%;left:55%"><div class="pin-circle" style="background:var(--quinary-500);animation-delay:1.6s"></div></div>
+                </div>
 
+                <div class="app-list">
+                  <div class="app-card">
+                    <div class="app-card-img" style="background:var(--primary-200)"></div>
+                    <div>
+                      <span class="app-card-name">Alhambra Palace</span>
+                      <span class="app-card-sub">1.2 km · Nazarí</span>
+                      <span class="app-xp">+120 XP</span>
+                    </div>
+                  </div>
+                  <div class="app-card">
+                    <div class="app-card-img" style="background:var(--secondary-200)"></div>
+                    <div>
+                      <span class="app-card-name">Catedral de Granada</span>
+                      <span class="app-card-sub">0.4 km · Renaissance</span>
+                      <span class="app-xp">+120 XP</span>
+                    </div>
+                  </div>
+                  <div class="app-card">
+                    <div class="app-card-img" style="background:var(--tertiary-200)"></div>
+                    <div>
+                      <span class="app-card-name">Jardines del Generalife</span>
+                      <span class="app-card-sub">1.6 km · Moorish</span>
+                      <span class="app-xp">+120 XP</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-bar-label" data-i18n="trust.label">Built for real explorers</div>
+    <div class="trust-items">
+      <div class="trust-item"><span class="trust-dot"></span><span data-i18n="trust.monuments">Historical monuments</span></div>
+      <div class="trust-item"><span class="trust-dot"></span><span data-i18n="trust.cities">Cities worldwide</span></div>
+      <div class="trust-item"><span class="trust-dot"></span><span data-i18n="trust.live">Conquer cities</span></div>
+      <div class="trust-item"><span class="trust-dot"></span><span data-i18n="trust.privacy">Privacy first</span></div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section id="features" class="features-section">
+    <div class="container">
+      <div class="centered">
+        <span class="s-eyebrow" data-i18n="feat.eyebrow">Everything in one app</span>
+        <h2 class="s-title" data-i18n-html="feat.title">More than a map.<br />A travel companion.</h2>
+        <p class="s-sub" data-i18n="feat.sub">Talaria combines a rich monument guide, curated city routes, gamified achievements, and a year-in-review recap — all powered by real exploration.</p>
+      </div>
+      <div class="feat-grid reveal">
+        <div class="feat-card">
+          <span class="feat-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M9 21V7l3-4 3 4v14"/><path d="M3 21V11l6-4"/><path d="M21 21V11l-6-4"/></svg></span>
+          <span class="feat-num">01</span>
+          <div class="feat-title" data-i18n="feat.01.title">Monument Guide</div>
+          <p class="feat-desc" data-i18n="feat.01.desc">Unlock detailed stories, history, and cultural context for hundreds of monuments — automatically as you physically visit them.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-13a3.5 3.5 0 0 1 0-7H6"/><circle cx="18" cy="5" r="3"/></svg></span>
+          <span class="feat-num">02</span>
+          <div class="feat-title" data-i18n="feat.02.title">Curated Routes</div>
+          <p class="feat-desc" data-i18n="feat.02.desc">Follow hand-crafted walking routes through the city's best neighbourhoods — multi-stop journeys with automatic progress tracking.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/></svg></span>
+          <span class="feat-num">03</span>
+          <div class="feat-title" data-i18n="feat.03.title">Achievements</div>
+          <p class="feat-desc" data-i18n="feat.03.desc">Earn badges for everything you discover. From first steps to rare city-wide titles — your passport fills as the world opens up.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></span>
+          <span class="feat-num">04</span>
+          <div class="feat-title" data-i18n="feat.04.title">Year Wrapped</div>
+          <p class="feat-desc" data-i18n="feat.04.desc">A cinematic end-of-year recap of your exploration: cities visited, monuments discovered, routes completed, and your global impact.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span>
+          <span class="feat-num">05</span>
+          <div class="feat-title" data-i18n="feat.05.title">Global Passport</div>
+          <p class="feat-desc" data-i18n="feat.05.desc">Track every city you've set foot in on a beautiful world map. Your personal travel history, always with you.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon"><svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></span>
+          <span class="feat-num">06</span>
+          <div class="feat-title" data-i18n="feat.06.title">City Conquest</div>
+          <p class="feat-desc" data-i18n="feat.06.desc">Join a faction and fight for territorial control. Plant flags, give Honor to allies, and watch leaderboards shift in real time.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></span>
+          <span class="feat-num">07</span>
+          <div class="feat-title" data-i18n="feat.07.title">Audio Guides</div>
+          <p class="feat-desc" data-i18n="feat.07.desc">Narrated stories for each monument — historians, local voices, and cultural context, delivered right as you stand in front of the real thing.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+          <span class="feat-num">08</span>
+          <div class="feat-title" data-i18n="feat.08.title">Trivia Challenges</div>
+          <p class="feat-desc" data-i18n="feat.08.desc">On-site quizzes tied to each monument. Answer correctly to earn bonus XP and unlock rare achievements no one else has.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+          <span class="feat-num">09</span>
+          <div class="feat-title" data-i18n="feat.09.title">Daily Challenges</div>
+          <p class="feat-desc" data-i18n="feat.09.desc">Fresh objectives every single day. Explore new districts, beat the clock, keep streaks alive. There is always a reason to go outside.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAME MODES -->
+  <section id="modes" class="modes-section">
+    <div class="container">
+      <div class="centered">
+        <span class="s-eyebrow" style="color:rgba(255,255,255,0.35);" data-i18n="modes.eyebrow">Play your way</span>
+        <h2 class="s-title" style="color:#fff;" data-i18n-html="modes.title">Three modes.<br />Infinite ways to explore.</h2>
+        <p class="s-sub" style="color:rgba(255,255,255,0.35);margin:0 auto;" data-i18n="modes.sub">Choose how deep you want to go. Switch anytime — Talaria adapts to your mood, your city, and your pace.</p>
+      </div>
+      <div class="modes-grid reveal">
+
+        <div class="mode-card">
+          <span class="mode-tag" style="background:rgba(61,105,254,0.15);color:var(--secondary-500);" data-i18n="modes.guide.tag">Guide</span>
+          <div class="mode-name" data-i18n="modes.guide.name">Guide Mode</div>
+          <p class="mode-desc" data-i18n="modes.guide.desc">Pure travel companion. Full content, no pressure. Ideal for first-time visitors who want to explore at their own pace.</p>
+          <div class="mode-feats">
+            <div class="mf"><svg viewBox="0 0 24 24" fill="none" stroke="var(--secondary-500)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="modes.guide.f1">Monument guide &amp; history</span></div>
+            <div class="mf"><svg viewBox="0 0 24 24" fill="none" stroke="var(--secondary-500)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="modes.guide.f2">Audio guides</span></div>
+            <div class="mf"><svg viewBox="0 0 24 24" fill="none" stroke="var(--secondary-500)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="modes.guide.f3">Curated routes</span></div>
+            <div class="mf"><svg viewBox="0 0 24 24" fill="none" stroke="var(--secondary-500)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="modes.guide.f4">Trivia &amp; achievements</span></div>
+            <div class="mf off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span data-i18n="modes.guide.f5">Conquest &amp; factions</span></div>
+          </div>
+        </div>
+
+        <div class="mode-card" style="background:rgba(255,61,113,0.06);border-left:1px solid rgba(255,61,113,0.15);border-right:1px solid rgba(255,61,113,0.15);">
+          <span class="mode-tag" style="background:rgba(255,61,113,0.15);color:var(--primary-500);" data-i18n="modes.exp.tag">Exploration</span>
+          <div class="mode-name" data-i18n="modes.exp.name">Exploration Mode</div>
+          <p class="mode-desc" data-i18n="modes.exp.desc">The full game. Join a faction, plant flags, and conquer the city alongside players worldwide.</p>
+          <div class="mode-feats">
+            <div class="mf"><svg viewBox="0 0 24 24" fill="none" stroke="var(--primary-500)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="modes.exp.f1">Everything in Guide</span></div>
+            <div class="mf"><svg viewBox="0 0 24 24" fill="none" stroke="var(--primary-500)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="modes.exp.f2">Faction selection</span></div>
+            <div class="mf"><svg viewBox="0 0 24 24" fill="none" stroke="var(--primary-500)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="modes.exp.f3">Flag planting &amp; conquest</span></div>
+            <div class="mf"><svg viewBox="0 0 24 24" fill="none" stroke="var(--primary-500)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="modes.exp.f4">Territory control &amp; leaderboard</span></div>
+            <div class="mf"><svg viewBox="0 0 24 24" fill="none" stroke="var(--primary-500)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="modes.exp.f5">Live city battles</span></div>
+          </div>
+        </div>
+
+        <div class="mode-card" style="background:rgba(242,164,21,0.05);">
+          <span class="mode-tag" style="background:rgba(242,164,21,0.12);color:var(--tertiary-500);" data-i18n="modes.mys.tag">Mystery</span>
+          <div class="mode-name" data-i18n="modes.mys.name">Mystery Mode</div>
+          <p class="mode-desc" data-i18n="modes.mys.desc">For the bold. The map is hidden in fog. Spend XP to Scout sites before rivals do. Tactical, ruthless, addictive.</p>
+          <div class="mode-feats">
+            <div class="mf"><svg viewBox="0 0 24 24" fill="none" stroke="var(--tertiary-500)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="modes.mys.f1">Fog of war map</span></div>
+            <div class="mf"><svg viewBox="0 0 24 24" fill="none" stroke="var(--tertiary-500)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="modes.mys.f2">Scout mechanic (25 XP)</span></div>
+            <div class="mf"><svg viewBox="0 0 24 24" fill="none" stroke="var(--tertiary-500)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="modes.mys.f3">Hidden conquest sites</span></div>
+            <div class="mf"><svg viewBox="0 0 24 24" fill="none" stroke="var(--tertiary-500)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="modes.mys.f4">Tactical faction battles</span></div>
+            <div class="mf"><svg viewBox="0 0 24 24" fill="none" stroke="var(--tertiary-500)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="modes.mys.f5">Exclusive Mystery achievements</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BENTO -->
+  <section>
+    <div class="container">
+      <div class="centered">
+        <span class="s-eyebrow" data-i18n="bento.eyebrow">Go deeper</span>
+        <h2 class="s-title" data-i18n="bento.title">Built for real explorers</h2>
+      </div>
+
+      <div class="bento">
+
+        <div class="bc bc5 reveal">
+          <span class="bc-label" style="color:var(--tertiary-500);" data-i18n="bento.ach.label">Achievements</span>
+          <div class="bc-title" data-i18n="bento.ach.title">City as a Videogame</div>
+          <p class="bc-desc" data-i18n="bento.ach.desc">Hundreds of achievements across Common, Epic, and Legendary tiers. Complete missions, chain streaks, and earn rare badges tied to real physical exploration.</p>
+          <div class="ach-list">
+            <div class="ach-item earned">
+              <div class="ach-ico" style="background:var(--secondary-200);color:var(--secondary-500);"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div class="ach-info"><span class="ach-name" data-i18n="bento.ach.item1.name">First Steps</span><span class="ach-sub" data-i18n="bento.ach.item1.sub">Visit your first monument</span></div>
+              <span class="ach-rarity rarity-common" data-i18n="rarity.common">Common</span>
+            </div>
+            <div class="ach-item earned">
+              <div class="ach-ico" style="background:var(--tertiary-200);color:var(--tertiary-500);"><svg viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/></svg></div>
+              <div class="ach-info"><span class="ach-name" data-i18n="bento.ach.item2.name">City Conqueror</span><span class="ach-sub" data-i18n="bento.ach.item2.sub">Dominate a city for 7 days</span></div>
+              <span class="ach-rarity rarity-epic" data-i18n="rarity.epic">Epic</span>
+            </div>
+            <div class="ach-item">
+              <div class="ach-ico" style="background:var(--primary-200);color:var(--primary-500);"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/></svg></div>
+              <div class="ach-info"><span class="ach-name" data-i18n="bento.ach.item3.name">Legendary Explorer</span><span class="ach-sub" data-i18n="bento.ach.item3.sub">Visit 5 cities, 100+ monuments</span></div>
+              <span class="ach-rarity rarity-legendary" data-i18n="rarity.legendary">Legendary</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bc bc7 reveal">
+          <span class="bc-label" style="color:var(--secondary-500);" data-i18n="bento.routes.label">Routes</span>
+          <div class="bc-title" data-i18n="bento.routes.title">Guided Routes</div>
+          <p class="bc-desc" data-i18n="bento.routes.desc">Expert-crafted walking routes through the best neighbourhoods. Track progress stop by stop and earn bonus XP for completing full routes.</p>
+          <div class="route-card">
+            <div class="route-line">
+              <div class="rdot"></div>
+              <div class="rcon"></div>
+              <div class="rdot" style="border-color:var(--quinary-600)"></div>
+              <div class="rcon"></div>
+              <div class="rdot" style="border-color:var(--tertiary-500)"></div>
+            </div>
+            <div style="flex:1">
+              <div style="margin-bottom:8px">
+                <span class="rstop-name">Alhambra Palace</span>
+                <span class="rstop-sub">Start · Nazarí fortress</span>
+              </div>
+              <div style="margin-bottom:8px">
+                <span class="rstop-name">Jardines del Generalife</span>
+                <span class="rstop-sub">0.8 km · Royal gardens</span>
+              </div>
+              <div>
+                <span class="rstop-name">Mirador de San Nicolás</span>
+                <span class="rstop-sub">1.4 km · Best views in Granada</span>
+              </div>
+            </div>
+            <div class="rkm">2.4 km</div>
+          </div>
+        </div>
+
+        <div class="bc bc4 reveal">
+          <span class="bc-label" style="color:var(--primary-500);" data-i18n="bento.wrapped.label">Wrapped</span>
+          <div class="bc-title" data-i18n="bento.wrapped.title">Year Wrapped</div>
+          <p class="bc-desc" data-i18n="bento.wrapped.desc">A cinematic year-end recap of every city, monument, and milestone.</p>
+          <div class="wrapped-card">
+            <div class="wrapped-year" data-i18n="bento.wrapped.year">Your 2025 in Talaria</div>
+            <div class="wrapped-num">47</div>
+            <div class="wrapped-lbl" data-i18n="bento.wrapped.lbl">monuments discovered</div>
+            <div class="wrapped-chips">
+              <span class="wchip" data-i18n="bento.wrapped.c1">4 cities</span>
+              <span class="wchip" data-i18n="bento.wrapped.c2">12 routes</span>
+              <span class="wchip">3,240 XP</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bc bc4 reveal">
+          <span class="bc-label" style="color:var(--quinary-600);" data-i18n="bento.passport.label">Passport</span>
+          <div class="bc-title" data-i18n="bento.passport.title">World Passport</div>
+          <p class="bc-desc" data-i18n="bento.passport.desc">Every city you visit gets stamped on your personal world map. Watch it fill as you explore new countries.</p>
+          <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+            <span style="display:inline-flex;align-items:center;padding:5px 12px;border-radius:50px;background:var(--secondary-200);font-size:12px;font-weight:700;color:var(--secondary-800);gap:6px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>España</span>
+            <span style="display:inline-flex;align-items:center;padding:5px 12px;border-radius:50px;background:var(--primary-200);font-size:12px;font-weight:700;color:var(--primary-800);gap:6px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Italia</span>
+            <span style="display:inline-flex;align-items:center;padding:5px 12px;border-radius:50px;background:#fafafa;border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--neutral-400);">France</span>
+            <span style="display:inline-flex;align-items:center;padding:5px 12px;border-radius:50px;background:#fafafa;border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--neutral-400);">Portugal</span>
+            <span style="display:inline-flex;align-items:center;padding:5px 12px;border-radius:50px;background:#fafafa;border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--neutral-300);">+more</span>
+          </div>
+          <div style="margin-top:10px;font-size:12px;color:var(--neutral-300);" data-i18n="bento.passport.soon">More countries unlocking soon</div>
+        </div>
+
+        <div class="bc bc4 reveal" style="background:var(--neutral-900);border-color:var(--neutral-900);">
+          <div class="bc-bignum">120</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.3);margin-bottom:14px;" data-i18n="bento.daily.xplbl">XP per monument discovered</div>
+          <div class="bc-title" style="color:#fff;" data-i18n="bento.daily.title">Daily Challenges</div>
+          <p class="bc-desc" style="color:rgba(255,255,255,0.38);" data-i18n="bento.daily.desc">Fresh goals every day — explore new areas, hit streak milestones, or complete a route before sunset.</p>
+        </div>
+
+        <div class="bc bc8 reveal">
+          <span class="bc-label" style="color:var(--neutral-500);" data-i18n="bento.content.label">Content</span>
+          <div class="bc-title" data-i18n="bento.content.title">Rich Monument Content</div>
+          <p class="bc-desc" data-i18n="bento.content.desc">Every monument comes with deep editorial content: historical context, architectural details, and cultural significance — unlocked the moment you arrive in person.</p>
+          <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;">
+
+            <!-- Monument card: Baptistery -->
+            <div style="flex:1;min-width:190px;background:#fafafa;border-radius:14px;padding:14px 16px;border:1px solid var(--border);">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:6px;margin-bottom:7px;">
+                <div style="font-size:13px;font-weight:700;color:var(--neutral-900);line-height:1.3;">Baptistery of San Giovanni</div>
+                <div style="flex-shrink:0;background:var(--primary-200);color:var(--primary-800);font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;" data-i18n="mon.type.church">Church</div>
+              </div>
+              <p style="font-size:11px;color:var(--neutral-500);line-height:1.5;margin-bottom:11px;" data-i18n="mon.bap.desc">Florence's oldest building — famous for Ghiberti's Gates of Paradise</p>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="background:var(--tertiary-200);color:var(--tertiary-800);font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;">+80 XP</div>
+                <div style="display:flex;align-items:center;gap:4px;color:var(--neutral-400);font-size:10px;font-weight:600;" data-i18n="mon.audio">Audio guide</div>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--neutral-300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+              </div>
+            </div>
+
+            <!-- Monument card: Santa Croce -->
+            <div style="flex:1;min-width:190px;background:#fafafa;border-radius:14px;padding:14px 16px;border:1px solid var(--border);">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:6px;margin-bottom:7px;">
+                <div style="font-size:13px;font-weight:700;color:var(--neutral-900);line-height:1.3;">Basilica di Santa Croce</div>
+                <div style="flex-shrink:0;background:var(--primary-200);color:var(--primary-800);font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;" data-i18n="mon.type.church">Church</div>
+              </div>
+              <p style="font-size:11px;color:var(--neutral-500);line-height:1.5;margin-bottom:11px;" data-i18n="mon.croce.desc">Temple of Italian Glories — burial place of Michelangelo and Galileo</p>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="background:var(--tertiary-200);color:var(--tertiary-800);font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;">+100 XP</div>
+                <div style="display:flex;align-items:center;gap:4px;color:var(--neutral-400);font-size:10px;font-weight:600;" data-i18n="mon.audio">Audio guide</div>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--neutral-300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CITIES -->
+  <section id="cities">
+    <div class="container">
+      <span class="s-eyebrow" data-i18n="cities.eyebrow">Available cities</span>
+      <h2 class="s-title" data-i18n="cities.title">Start your journey here</h2>
+      <p class="s-sub" data-i18n="cities.sub">Talaria is live in two of Europe's most beautiful cities — with many more on the way. Every city is hand-curated by our team.</p>
+
+      <div class="cities-grid">
+        <div class="city-card live reveal">
+          <div class="city-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/d/de/Dawn_Charles_V_Palace_Alhambra_Granada_Andalusia_Spain.jpg');background-size:cover;background-position:center;">
+            <div class="city-overlay"></div>
+            <span class="city-live-badge" data-i18n="cities.live">Live now</span>
+          </div>
+          <div class="city-body">
+            <span class="city-flag">🇪🇸</span>
+            <div class="city-name">Granada</div>
+            <div class="city-country" data-i18n="cities.granada.country">Andalucía, Spain</div>
+            <div class="city-stats">
+              <div><span class="cstat-num">24+</span><span class="cstat-lbl" data-i18n="cities.lbl.monuments">Monuments</span></div>
+              <div><span class="cstat-num">8</span><span class="cstat-lbl" data-i18n="cities.lbl.routes">Routes</span></div>
+              <div><span class="cstat-num">40+</span><span class="cstat-lbl" data-i18n="cities.lbl.achievements">Achievements</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="city-card live reveal">
+          <div class="city-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/6/6c/Fa%C3%A7ade_cath%C3%A9drale_Florence.jpg');background-size:cover;background-position:center;">
+            <div class="city-overlay"></div>
+            <span class="city-live-badge" data-i18n="cities.live">Live now</span>
+          </div>
+          <div class="city-body">
+            <span class="city-flag">🇮🇹</span>
+            <div class="city-name">Florence</div>
+            <div class="city-country" data-i18n="cities.florence.country">Tuscany, Italy</div>
+            <div class="city-stats">
+              <div><span class="cstat-num">30+</span><span class="cstat-lbl" data-i18n="cities.lbl.monuments">Monuments</span></div>
+              <div><span class="cstat-num">10</span><span class="cstat-lbl" data-i18n="cities.lbl.routes">Routes</span></div>
+              <div><span class="cstat-num">50+</span><span class="cstat-lbl" data-i18n="cities.lbl.achievements">Achievements</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="city-card soon reveal">
+          <div class="city-img" style="background:linear-gradient(135deg,#555,#777);">
+            <div class="city-pattern"></div><div class="city-overlay"></div>
+            <span class="city-soon-badge" data-i18n="cities.soon_badge">Coming soon</span>
+          </div>
+          <div class="city-body">
+            <span class="city-flag" style="display:flex;align-items:center;gap:6px;font-size:15px;color:var(--neutral-400);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span>
+            <div class="city-name" data-i18n="cities.more.name">More cities</div>
+            <div class="city-country" data-i18n="cities.more.country">Europe &amp; beyond</div>
+            <div style="margin-top:14px;font-size:13px;color:var(--neutral-500);line-height:1.6;" data-i18n="cities.more.desc">
+              Rome, Paris, Lisbon, Seville and many more — each hand-curated by our team.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="how-section">
+    <div class="container">
+      <div class="centered">
+        <span class="s-eyebrow" data-i18n="how.eyebrow">How Talaria works</span>
+        <h2 class="s-title" data-i18n-html="how.title">Simple to start.<br />Impossible to stop.</h2>
+      </div>
+      <div class="how-grid reveal">
+        <div class="how-step">
+          <span class="step-ghost">01</span>
+          <span class="step-icon"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span class="step-counter" data-i18n="how.s1.counter">Step 01</span>
+          <div class="step-title" data-i18n="how.s1.title">Arrive in a city</div>
+          <p class="step-desc" data-i18n="how.s1.desc">Open Talaria and the map populates around you. Monuments, active routes, and faction battles appear in real time.</p>
+        </div>
+        <div class="how-step">
+          <span class="step-ghost">02</span>
+          <span class="step-icon"><svg viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <span class="step-counter" data-i18n="how.s2.counter">Step 02</span>
+          <div class="step-title" data-i18n="how.s2.title">Walk &amp; discover</div>
+          <p class="step-desc" data-i18n="how.s2.desc">Move physically toward monuments to unlock them. Get rich historical content and earn XP with each new discovery.</p>
+        </div>
+        <div class="how-step">
+          <span class="step-ghost">03</span>
+          <span class="step-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+          <span class="step-counter" data-i18n="how.s3.counter">Step 03</span>
+          <div class="step-title" data-i18n="how.s3.title">Complete routes</div>
+          <p class="step-desc" data-i18n="how.s3.desc">Follow curated walking routes stop by stop. Complete the full route for bonus XP and exclusive achievements.</p>
+        </div>
+        <div class="how-step">
+          <span class="step-ghost">04</span>
+          <span class="step-icon"><svg viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></span>
+          <span class="step-counter" data-i18n="how.s4.counter">Step 04</span>
+          <div class="step-title" data-i18n="how.s4.title">Conquer the city</div>
+          <p class="step-desc" data-i18n="how.s4.desc">Join a faction, plant flags, and build territorial influence. Coordinate with your Crown to dominate the leaderboard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACTIONS -->
+  <section id="factions">
+    <div class="container">
+      <div class="centered">
+        <span class="s-eyebrow" data-i18n="fac.eyebrow">Choose your Crown</span>
+        <h2 class="s-title" data-i18n-html="fac.title">Four factions.<br />One winner per city.</h2>
+        <p class="s-sub" data-i18n="fac.sub">In conquest mode you join a faction — your Crown. Compete alongside players worldwide. One free change in your first 7 days.</p>
+      </div>
+      <div class="factions-grid" style="margin-top:48px;">
+        <div class="faction-card fc-blue reveal">
+          <div class="faction-initial" style="background:var(--secondary-500);">Ex</div>
+          <div class="faction-name" style="color:var(--secondary-500);">Explorers</div>
+          <p class="faction-tagline" data-i18n="fac.exp.tagline">First to discover, first to conquer. Reward the brave.</p>
+          <span class="faction-pill" style="background:var(--secondary-200);color:var(--secondary-800);" data-i18n="fac.exp.tag">Discovery Bonus</span>
+        </div>
+        <div class="faction-card fc-green reveal">
+          <div class="faction-initial" style="background:var(--quinary-600);">Gu</div>
+          <div class="faction-name" style="color:var(--quinary-600);">Guardians</div>
+          <p class="faction-tagline" data-i18n="fac.gua.tagline">Defend every site, protect every line, hold forever.</p>
+          <span class="faction-pill" style="background:var(--quinary-200);color:var(--quinary-600);" data-i18n="fac.gua.tag">Fortress Stance</span>
+        </div>
+        <div class="faction-card fc-amber reveal">
+          <div class="faction-initial" style="background:var(--tertiary-500);">Pi</div>
+          <div class="faction-name" style="color:var(--tertiary-800);">Pioneers</div>
+          <p class="faction-tagline" data-i18n="fac.pio.tagline">Build paths others will follow. Leave your mark.</p>
+          <span class="faction-pill" style="background:var(--tertiary-200);color:var(--tertiary-800);" data-i18n="fac.pio.tag">Builder Momentum</span>
+        </div>
+        <div class="faction-card fc-pink reveal">
+          <div class="faction-initial" style="background:var(--primary-500);">Se</div>
+          <div class="faction-name" style="color:var(--primary-500);">Seekers</div>
+          <p class="faction-tagline" data-i18n="fac.see.tagline">Hidden truths, invisible edges, tactical advantage.</p>
+          <span class="faction-pill" style="background:var(--primary-200);color:var(--primary-800);" data-i18n="fac.see.tag">Scout Efficiency</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section id="download" class="download-section">
+    <div class="container download-inner">
+      <span class="dl-eyebrow" data-i18n="dl.eyebrow">Free to download</span>
+      <h2 class="dl-title" data-i18n-html="dl.title">Your next city<br />is <span>waiting.</span></h2>
+      <p class="dl-sub" data-i18n="dl.sub">Granada and Florence are live now. Download Talaria free and start exploring today.</p>
+      <div class="store-btns">
+        <a href="#" class="store-btn">
+          <svg class="store-logo" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div>
+            <span class="store-sub" data-i18n="dl.apple.sub">Download on the</span>
+            <span class="store-name" data-i18n="dl.apple.name">App Store</span>
+          </div>
+        </a>
+        <a href="#" class="store-btn">
+          <svg class="store-logo" viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76c.3.17.63.24.97.21l12.54-12.54L13 7.74 3.18 23.76zm16.7-10.08L17.21 12l2.67-1.68L6.6.55C6.26.35 5.9.28 5.55.31L16.88 11.64l3-1.96zm-1.34 2.19L17.21 12l-11 6.9 10.65 4.79c.35.16.73.16 1.06.03l2.62-7.85z"/></svg>
+          <div>
+            <span class="store-sub" data-i18n="dl.google.sub">Get it on</span>
+            <span class="store-name" data-i18n="dl.google.name">Google Play</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <a href="#" class="footer-logo">
+          <img src="logo-icon.png" alt="Talaria" />
+          Talaria
+        </a>
+        <div class="footer-links">
+          <a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+          <a href="delete.html" data-i18n="footer.terms">Terms of Service</a>
+          <a href="mailto:info@apptalaria.com" data-i18n="footer.contact">Contact</a>
+        </div>
+        <div class="footer-copy" data-i18n="footer.copy">© 2026 Talaria. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    const T = {
+      en: {
+        'nav.features':'Features','nav.modes':'Modes','nav.cities':'Cities','nav.factions':'Factions','nav.cta':'Download free',
+        'hero.eyebrow':'Granada & Florence live now',
+        'hero.h1':'Travel the world<br /><span class="text-grad">Own every city</span>',
+        'hero.sub':'Talaria turns every city into a videogame. Discover monuments with audio guides, follow curated routes, earn achievements, and compete for territory — across three gameplay modes built for real explorers.',
+        'hero.btn_primary':'Download free','hero.btn_secondary':'See features →',
+        'hero.trust':'<strong>Thousands of explorers</strong> already conquering the world',
+        'trust.label':'Built for real explorers','trust.monuments':'Historical monuments','trust.cities':'Cities worldwide','trust.live':'Conquer cities','trust.privacy':'Privacy first',
+        'feat.eyebrow':'Everything in one app','feat.title':'More than a map<br />A travel companion',
+        'feat.sub':'Talaria combines a rich monument guide, curated city routes, gamified achievements, and a year-in-review recap — all powered by real exploration.',
+        'feat.01.title':'Monument Guide','feat.01.desc':'Unlock detailed stories, history, and cultural context for hundreds of monuments — automatically as you physically visit them.',
+        'feat.02.title':'Curated Routes','feat.02.desc':"Follow hand-crafted walking routes through the city's best neighbourhoods — multi-stop journeys with automatic progress tracking.",
+        'feat.03.title':'Achievements','feat.03.desc':'Earn badges for everything you discover. From first steps to rare city-wide titles — your passport fills as the world opens up.',
+        'feat.04.title':'Year Wrapped','feat.04.desc':'A cinematic end-of-year recap of your exploration: cities visited, monuments discovered, routes completed, and your global impact.',
+        'feat.05.title':'Global Passport','feat.05.desc':"Track every city you've set foot in on a beautiful world map. Your personal travel history, always with you.",
+        'feat.06.title':'City Conquest','feat.06.desc':'Join a faction and fight for territorial control. Plant flags, give Honor to allies, and watch leaderboards shift in real time.',
+        'feat.07.title':'Audio Guides','feat.07.desc':'Narrated stories for each monument — historians, local voices, and cultural context, delivered right as you stand in front of the real thing.',
+        'feat.08.title':'Trivia Challenges','feat.08.desc':'On-site quizzes tied to each monument. Answer correctly to earn bonus XP and unlock rare achievements no one else has.',
+        'feat.09.title':'Daily Challenges','feat.09.desc':'Fresh objectives every single day. Explore new districts, beat the clock, keep streaks alive. There is always a reason to go outside.',
+        'modes.eyebrow':'Play your way','modes.title':'Three modes<br />Infinite ways to explore',
+        'modes.sub':'Choose how deep you want to go. Switch anytime — Talaria adapts to your mood, your city, and your pace.',
+        'modes.guide.tag':'Guide','modes.guide.name':'Guide Mode','modes.guide.desc':'Pure travel companion. Full content, no pressure. Ideal for first-time visitors who want to explore at their own pace.',
+        'modes.guide.f1':'Monument guide & history','modes.guide.f2':'Audio guides','modes.guide.f3':'Curated routes','modes.guide.f4':'Trivia & achievements','modes.guide.f5':'Conquest & factions',
+        'modes.exp.tag':'Exploration','modes.exp.name':'Exploration Mode','modes.exp.desc':'The full game. Join a faction, plant flags, and conquer the city alongside players worldwide.',
+        'modes.exp.f1':'Everything in Guide','modes.exp.f2':'Faction selection','modes.exp.f3':'Flag planting & conquest','modes.exp.f4':'Territory control & leaderboard','modes.exp.f5':'Live city battles',
+        'modes.mys.tag':'Mystery','modes.mys.name':'Mystery Mode','modes.mys.desc':'For the bold. The map is hidden in fog. Spend XP to Scout sites before rivals do. Tactical, ruthless, addictive.',
+        'modes.mys.f1':'Fog of war map','modes.mys.f2':'Scout mechanic (25 XP)','modes.mys.f3':'Hidden conquest sites','modes.mys.f4':'Tactical faction battles','modes.mys.f5':'Exclusive Mystery achievements',
+        'bento.eyebrow':'Go deeper','bento.title':'Built for real explorers',
+        'bento.ach.label':'Achievements','bento.ach.title':'City as a Videogame','bento.ach.desc':'Hundreds of achievements across Common, Epic, and Legendary tiers. Complete missions, chain streaks, and earn rare badges tied to real physical exploration.',
+        'bento.ach.item1.name':'First Steps','bento.ach.item1.sub':'Visit your first monument',
+        'bento.ach.item2.name':'City Conqueror','bento.ach.item2.sub':'Dominate a city for 7 days',
+        'bento.ach.item3.name':'Legendary Explorer','bento.ach.item3.sub':'Visit 5 cities, 100+ monuments',
+        'rarity.common':'Common','rarity.epic':'Epic','rarity.legendary':'Legendary',
+        'bento.routes.label':'Routes','bento.routes.title':'Guided Routes','bento.routes.desc':'Expert-crafted walking routes through the best neighbourhoods. Track progress stop by stop and earn bonus XP for completing full routes.',
+        'bento.wrapped.label':'Wrapped','bento.wrapped.title':'Year Wrapped','bento.wrapped.desc':'A cinematic year-end recap of every city, monument, and milestone.',
+        'bento.wrapped.year':'Your 2025 in Talaria','bento.wrapped.lbl':'monuments discovered','bento.wrapped.c1':'4 cities','bento.wrapped.c2':'12 routes',
+        'bento.passport.label':'Passport','bento.passport.title':'World Passport','bento.passport.desc':'Every city you visit gets stamped on your personal world map. Watch it fill as you explore new countries.',
+        'bento.passport.soon':'More countries unlocking soon',
+        'bento.daily.xplbl':'XP per monument discovered','bento.daily.title':'Daily Challenges','bento.daily.desc':'Fresh goals every day — explore new areas, hit streak milestones, or complete a route before sunset.',
+        'bento.content.label':'Content','bento.content.title':'Rich Monument Content','bento.content.desc':'Every monument comes with deep editorial content: historical context, architectural details, and cultural significance — unlocked the moment you arrive in person.',
+        'mon.type.church':'Church','mon.audio':'Audio guide',
+        'mon.bap.desc':"Florence's oldest building — famous for Ghiberti's Gates of Paradise",
+        'mon.croce.desc':'Temple of Italian Glories — burial place of Michelangelo and Galileo',
+        'cities.eyebrow':'Available cities','cities.title':'Start your journey here','cities.sub':"Talaria is live in two of Europe's most beautiful cities — with many more on the way. Every city is hand-curated by our team.",
+        'cities.live':'Live now','cities.soon_badge':'Coming soon',
+        'cities.granada.country':'Andalucía, Spain','cities.florence.country':'Tuscany, Italy',
+        'cities.more.name':'More cities','cities.more.country':'Europe & beyond','cities.more.desc':'Rome, Paris, Lisbon, Seville and many more — each hand-curated by our team.',
+        'cities.lbl.monuments':'Monuments','cities.lbl.routes':'Routes','cities.lbl.achievements':'Achievements',
+        'how.eyebrow':'How Talaria works','how.title':'Simple to start<br />Impossible to stop',
+        'how.s1.counter':'Step 01','how.s1.title':'Arrive in a city','how.s1.desc':'Open Talaria and the map populates around you. Monuments, active routes, and faction battles appear in real time.',
+        'how.s2.counter':'Step 02','how.s2.title':'Walk & discover','how.s2.desc':'Move physically toward monuments to unlock them. Get rich historical content and earn XP with each new discovery.',
+        'how.s3.counter':'Step 03','how.s3.title':'Complete routes','how.s3.desc':'Follow curated walking routes stop by stop. Complete the full route for bonus XP and exclusive achievements.',
+        'how.s4.counter':'Step 04','how.s4.title':'Conquer the city','how.s4.desc':'Join a faction, plant flags, and build territorial influence. Coordinate with your Crown to dominate the leaderboard.',
+        'fac.eyebrow':'Choose your Crown','fac.title':'Four factions<br />One winner per city',
+        'fac.sub':'In conquest mode you join a faction — your Crown. Compete alongside players worldwide. One free change in your first 7 days.',
+        'fac.exp.tagline':'First to discover, first to conquer — reward the brave','fac.exp.tag':'Discovery Bonus',
+        'fac.gua.tagline':'Defend every site, protect every line, hold forever','fac.gua.tag':'Fortress Stance',
+        'fac.pio.tagline':'Build paths others will follow — leave your mark','fac.pio.tag':'Builder Momentum',
+        'fac.see.tagline':'Hidden truths, invisible edges, tactical advantage','fac.see.tag':'Scout Efficiency',
+        'dl.eyebrow':'Free to download','dl.title':'Your next city<br />is <span>waiting</span>','dl.sub':'Granada and Florence are live now. Download Talaria free and start exploring today.',
+        'dl.apple.sub':'Download on the','dl.apple.name':'App Store','dl.google.sub':'Get it on','dl.google.name':'Google Play',
+        'footer.privacy':'Privacy Policy','footer.terms':'Terms of Service','footer.contact':'Contact',
+        'footer.copy':'© 2026 Talaria. All rights reserved.',
+      },
+      es: {
+        'nav.features':'Características','nav.modes':'Modos','nav.cities':'Ciudades','nav.factions':'Facciones','nav.cta':'Descargar gratis',
+        'hero.eyebrow':'Granada y Florencia ya disponibles',
+        'hero.h1':'Recorre el mundo<br /><span class="text-grad">Conquista cada ciudad</span>',
+        'hero.sub':'Talaria convierte cada ciudad en un videojuego. Descubre monumentos con audioguías, sigue rutas a pie, desbloquea logros y compite por el control del territorio — en tres modos diseñados para exploradores de verdad.',
+        'hero.btn_primary':'Descargar gratis','hero.btn_secondary':'Ver más →',
+        'hero.trust':'<strong>Miles de exploradores</strong> ya conquistando el mundo',
+        'trust.label':'Hecho para exploradores de verdad','trust.monuments':'Monumentos históricos','trust.cities':'Ciudades de todo el mundo','trust.live':'Conquista ciudades','trust.privacy':'Tu privacidad primero',
+        'feat.eyebrow':'Todo en una sola app','feat.title':'Tu app de exploración<br />con alma de videojuego',
+        'feat.sub':'Guía de monumentos, audioguías, rutas a pie, logros y resumen anual — todo basado en exploración física real.',
+        'feat.01.title':'Guía de Monumentos','feat.01.desc':'La historia y el contexto cultural de cada monumento se desbloquean en el momento exacto en que llegas en persona.',
+        'feat.02.title':'Rutas a Pie','feat.02.desc':'Recorre los mejores barrios siguiendo itinerarios diseñados a mano, con seguimiento automático parada a parada.',
+        'feat.03.title':'Logros','feat.03.desc':'Gana insignias por cada cosa que descubres — desde tus primeros pasos hasta títulos legendarios que poca gente tiene.',
+        'feat.04.title':'Year Wrapped','feat.04.desc':'Un resumen de tu año en Talaria: ciudades recorridas, monumentos descubiertos, rutas completadas y tu huella en el mundo.',
+        'feat.05.title':'Pasaporte Mundial','feat.05.desc':'Cada ciudad que pisas queda sellada en tu mapa personal — tu historial de viajes siempre en el bolsillo.',
+        'feat.06.title':'Conquista de Ciudades','feat.06.desc':'Elige facción, planta banderas y lucha por el control del territorio junto a jugadores de todo el mundo.',
+        'feat.07.title':'Audioguías','feat.07.desc':'Historiadores y voces locales narran cada monumento justo cuando estás delante de él, en el lugar real.',
+        'feat.08.title':'Trivia','feat.08.desc':'Preguntas sobre cada monumento que solo puedes responder estando allí. Acierta y desbloquea logros que nadie más tiene.',
+        'feat.09.title':'Retos Diarios','feat.09.desc':'Objetivos nuevos cada día — explora una zona nueva, mantén tu racha o completa una ruta antes de que anochezca.',
+        'modes.eyebrow':'A tu manera','modes.title':'Tres modos de juego<br />para explorar como quieras',
+        'modes.sub':'Tú decides hasta dónde llegar. Cambia de modo cuando quieras — Talaria se adapta a tu ritmo y tu ciudad.',
+        'modes.guide.tag':'Guía','modes.guide.name':'Modo Guía','modes.guide.desc':'Para quien quiere descubrir sin presión. Audioguías, rutas y contenido completo para disfrutar de la ciudad a tu aire.',
+        'modes.guide.f1':'Guía de monumentos e historia','modes.guide.f2':'Audioguías','modes.guide.f3':'Rutas curadas','modes.guide.f4':'Trivia y logros','modes.guide.f5':'Sin conquista ni facciones',
+        'modes.exp.tag':'Exploración','modes.exp.name':'Modo Exploración','modes.exp.desc':'El juego completo. Elige tu facción, planta banderas y conquista la ciudad junto a jugadores de todo el mundo.',
+        'modes.exp.f1':'Todo lo del Modo Guía','modes.exp.f2':'Elección de facción','modes.exp.f3':'Banderas y conquista','modes.exp.f4':'Control territorial y ranking','modes.exp.f5':'Batallas en directo',
+        'modes.mys.tag':'Misterio','modes.mys.name':'Modo Misterio','modes.mys.desc':'El mapa está cubierto de niebla — gasta XP para revelar sitios antes que tus rivales. Solo para los más atrevidos.',
+        'modes.mys.f1':'Mapa con niebla de guerra','modes.mys.f2':'Exploración táctica (25 XP)','modes.mys.f3':'Sitios de conquista ocultos','modes.mys.f4':'Batallas de facción tácticas','modes.mys.f5':'Logros exclusivos del modo',
+        'bento.eyebrow':'Descubre más','bento.title':'Hecho para exploradores de verdad',
+        'bento.ach.label':'Logros','bento.ach.title':'La ciudad como videojuego','bento.ach.desc':'Cientos de logros en tres niveles — Común, Épico y Legendario. Completa misiones, encadena rachas y consigue insignias únicas ligadas a la exploración real.',
+        'bento.ach.item1.name':'Primeros pasos','bento.ach.item1.sub':'Visita tu primer monumento',
+        'bento.ach.item2.name':'Conquistador','bento.ach.item2.sub':'Domina una ciudad durante 7 días',
+        'bento.ach.item3.name':'Leyenda exploradora','bento.ach.item3.sub':'5 ciudades y más de 100 monumentos',
+        'rarity.common':'Común','rarity.epic':'Épico','rarity.legendary':'Legendario',
+        'bento.routes.label':'Rutas','bento.routes.title':'Rutas Guiadas','bento.routes.desc':'Itinerarios a pie diseñados por expertos locales. Sigue cada parada y gana XP extra al completar la ruta entera.',
+        'bento.wrapped.label':'Wrapped','bento.wrapped.title':'Year Wrapped','bento.wrapped.desc':'Tu año en Talaria resumido en un vídeo — cada ciudad, monumento e hito que has alcanzado.',
+        'bento.wrapped.year':'Tu 2025 en Talaria','bento.wrapped.lbl':'monumentos descubiertos','bento.wrapped.c1':'4 ciudades','bento.wrapped.c2':'12 rutas',
+        'bento.passport.label':'Pasaporte','bento.passport.title':'Pasaporte Mundial','bento.passport.desc':'Cada ciudad que visitas queda sellada en tu mapa personal — mira cómo se llena mientras recorres el mundo.',
+        'bento.passport.soon':'Más países próximamente',
+        'bento.daily.xplbl':'XP por monumento descubierto','bento.daily.title':'Retos Diarios','bento.daily.desc':'Nuevos objetivos cada día — explora una zona nueva, llega a una racha o completa una ruta antes de que anochezca.',
+        'bento.content.label':'Contenido','bento.content.title':'Contenido de cada Monumento','bento.content.desc':'Historia, arquitectura y contexto cultural de cada monumento — todo se desbloquea en el momento en que llegas al lugar.',
+        'mon.type.church':'Iglesia','mon.audio':'Audioguía',
+        'mon.bap.desc':'El edificio más antiguo de Florencia — famoso por las Puertas del Paraíso de Ghiberti',
+        'mon.croce.desc':'El templo de las Glorias Italianas — último descanso de Miguel Ángel y Galileo',
+        'cities.eyebrow':'Ciudades disponibles','cities.title':'Empieza tu aventura aquí','cities.sub':'Talaria ya está en dos de las ciudades más bonitas de Europa, con muchas más en camino. Cada ciudad está seleccionada y preparada por nuestro equipo.',
+        'cities.live':'Disponible ya','cities.soon_badge':'Próximamente',
+        'cities.granada.country':'Andalucía, España','cities.florence.country':'Toscana, Italia',
+        'cities.more.name':'Más ciudades','cities.more.country':'Europa y más allá','cities.more.desc':'Roma, París, Lisboa, Sevilla y muchas más — cada una preparada a mano por nuestro equipo.',
+        'cities.lbl.monuments':'Monumentos','cities.lbl.routes':'Rutas','cities.lbl.achievements':'Logros',
+        'how.eyebrow':'Cómo funciona Talaria','how.title':'Fácil de empezar<br />Difícil de dejar',
+        'how.s1.counter':'Paso 01','how.s1.title':'Llega a la ciudad','how.s1.desc':'Abre Talaria y el mapa se llena a tu alrededor — monumentos, rutas activas y batallas de facciones, todo en tiempo real.',
+        'how.s2.counter':'Paso 02','how.s2.title':'Camina y descubre','how.s2.desc':'Acércate a los monumentos para desbloquearlos. Escucha la audioguía y gana XP con cada descubrimiento.',
+        'how.s3.counter':'Paso 03','how.s3.title':'Completa rutas','how.s3.desc':'Sigue la ruta parada a parada. Completa el recorrido entero y gana XP extra junto con logros exclusivos.',
+        'how.s4.counter':'Paso 04','how.s4.title':'Conquista la ciudad','how.s4.desc':'Planta banderas, gana influencia y coordínate con tu facción para dominar el ranking.',
+        'fac.eyebrow':'Elige tu Corona','fac.title':'Cuatro facciones<br />Un solo ganador por ciudad',
+        'fac.sub':'En el modo conquista eliges una facción — tu Corona. Compites junto a jugadores de todo el mundo, con un cambio gratuito durante los primeros 7 días.',
+        'fac.exp.tagline':'Llega antes que nadie, conquista antes que nadie — la velocidad lo es todo','fac.exp.tag':'Bonus Explorador',
+        'fac.gua.tagline':'Defiende lo tuyo, protege a los tuyos — que no te muevan','fac.gua.tag':'Posición Defensiva',
+        'fac.pio.tagline':'Abre caminos que otros seguirán — deja tu huella en el mapa','fac.pio.tag':'Impulso Pionero',
+        'fac.see.tagline':'Muévete en la sombra — quien más sabe, más lejos llega','fac.see.tag':'Eficiencia Táctica',
+        'dl.eyebrow':'Descarga gratuita','dl.title':'Tu próxima ciudad<br />te <span>espera</span>','dl.sub':'Granada y Florencia ya están disponibles. Descarga Talaria gratis y empieza a explorar hoy mismo.',
+        'dl.apple.sub':'Descarga en el','dl.apple.name':'App Store','dl.google.sub':'Disponible en','dl.google.name':'Google Play',
+        'footer.privacy':'Política de privacidad','footer.terms':'Términos de uso','footer.contact':'Contacto',
+        'footer.copy':'© 2026 Talaria. Todos los derechos reservados.',
+      }
+    };
+
+    function setLang(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const v = T[lang][el.dataset.i18n];
+        if (v !== undefined) el.textContent = v;
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const v = T[lang][el.dataset.i18nHtml];
+        if (v !== undefined) el.innerHTML = v;
+      });
+      document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.langBtn === lang);
+      });
+      localStorage.setItem('tlang', lang);
+    }
+
+    const initLang = localStorage.getItem('tlang') || 'es';
+    setLang(initLang);
+  </script>
 </body>
 </html>
