@@ -688,7 +688,7 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 960px) {
       .hero-inner { grid-template-columns: 1fr; }
-      .hero-visual { order: -1; }
+      .hero-visual { order: 1; }
       .fc { display: none; }
       .feat-grid { grid-template-columns: 1fr 1fr; }
       .modes-grid { grid-template-columns: 1fr; }
@@ -701,8 +701,39 @@
     }
 
     @media (max-width: 580px) {
+      /* Nav — hide CTA button, keep only logo + lang switcher */
+      .nav-links { display: none; }
+
+      /* Hero */
+      .hero { padding: 72px 0 52px; }
+      .hero-sub { font-size: 16px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .hero-actions a { width: 100%; text-align: center; justify-content: center; }
+
+      /* Sections */
+      section { padding: 64px 0; }
+      .download-section { padding: 80px 0; }
+      .s-sub { font-size: 15px; }
+
+      /* Bento */
+      .bc { padding: 22px; }
+
+      /* Trust bar */
+      .trust-items { gap: 16px; }
+
+      /* Grids */
       .feat-grid, .cities-grid, .how-grid, .factions-grid { grid-template-columns: 1fr; }
+
+      /* Store buttons */
       .store-btns { flex-direction: column; align-items: center; }
+      .store-btn { width: 240px; justify-content: center; }
+
+      /* Mode cards */
+      .mode-card { padding: 28px 22px; }
+
+      /* Logo smaller on mobile */
+      .nav-logo { font-size: 18px; }
+      .nav-logo img { width: 34px; height: 34px; }
     }
   </style>
 </head>
