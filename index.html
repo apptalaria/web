@@ -745,7 +745,7 @@
   <nav>
     <div class="nav-inner">
       <a href="#" class="nav-logo">
-        <img src="logo-icon.png" alt="Talaria" />
+        <img src="assets/logo-icon.png" alt="Talaria" />
         Talaria
       </a>
       <ul class="nav-links">
@@ -795,70 +795,26 @@
 
         <div class="hero-visual">
           <div class="fc fc-1">
-            <div class="fc-label">Monument unlocked</div>
+            <div class="fc-label" data-i18n="hero.fc1.label">Monument unlocked</div>
             <div class="fc-val">Alhambra Palace</div>
             <span class="fc-tag" style="background:var(--quinary-200);color:var(--quinary-600);">+120 XP</span>
           </div>
           <div class="fc fc-2">
-            <div class="fc-label">Route completed</div>
+            <div class="fc-label" data-i18n="hero.fc2.label">Route completed</div>
             <div class="fc-val">Albaicín Walk</div>
-            <span class="fc-tag" style="background:var(--secondary-200);color:var(--secondary-800);">3 stops · 2.4 km</span>
+            <span class="fc-tag" style="background:var(--secondary-200);color:var(--secondary-800);" data-i18n="hero.fc2.tag">3 stops · 2.4 km</span>
           </div>
           <div class="fc fc-3">
-            <div class="fc-label">Achievement earned</div>
-            <div class="fc-val">First Conqueror</div>
-            <span class="fc-tag" style="background:var(--tertiary-200);color:var(--tertiary-800);">Rare</span>
+            <div class="fc-label" data-i18n="hero.fc3.label">Achievement earned</div>
+            <div class="fc-val" data-i18n="hero.fc3.val">First Conqueror</div>
+            <span class="fc-tag" style="background:var(--tertiary-200);color:var(--tertiary-800);" data-i18n="hero.fc3.tag">Rare</span>
           </div>
 
           <div class="phone-scene">
             <div class="phone-outer">
               <div class="phone-notch"></div>
               <div class="phone-screen">
-                <div class="app-topbar">
-                  <div>
-                    <div class="app-city-label">Granada, España</div>
-                    <div class="app-screen-title">Explorar</div>
-                  </div>
-                  <div class="app-ava">D</div>
-                </div>
-
-                <div class="app-map">
-                  <div class="map-grid-h" style="top:35%"></div>
-                  <div class="map-grid-h" style="top:65%"></div>
-                  <div class="map-grid-v" style="left:33%"></div>
-                  <div class="map-grid-v" style="left:66%"></div>
-                  <div style="position:absolute;top:15%;left:15%;width:40%;height:35%;background:rgba(255,61,113,0.12);border:1.5px solid rgba(255,61,113,0.35);border-radius:40% 55% 45% 50%/50% 40% 55% 45%"></div>
-                  <div class="map-pin" style="top:22%;left:38%"><div class="pin-circle" style="background:var(--primary-500)"></div></div>
-                  <div class="map-pin" style="top:18%;left:60%"><div class="pin-circle" style="background:var(--secondary-500);animation-delay:0.8s"></div></div>
-                  <div class="map-pin" style="top:52%;left:55%"><div class="pin-circle" style="background:var(--quinary-500);animation-delay:1.6s"></div></div>
-                </div>
-
-                <div class="app-list">
-                  <div class="app-card">
-                    <div class="app-card-img" style="background:var(--primary-200)"></div>
-                    <div>
-                      <span class="app-card-name">Alhambra Palace</span>
-                      <span class="app-card-sub">1.2 km · Nazarí</span>
-                      <span class="app-xp">+120 XP</span>
-                    </div>
-                  </div>
-                  <div class="app-card">
-                    <div class="app-card-img" style="background:var(--secondary-200)"></div>
-                    <div>
-                      <span class="app-card-name">Catedral de Granada</span>
-                      <span class="app-card-sub">0.4 km · Renaissance</span>
-                      <span class="app-xp">+120 XP</span>
-                    </div>
-                  </div>
-                  <div class="app-card">
-                    <div class="app-card-img" style="background:var(--tertiary-200)"></div>
-                    <div>
-                      <span class="app-card-name">Jardines del Generalife</span>
-                      <span class="app-card-sub">1.6 km · Moorish</span>
-                      <span class="app-xp">+120 XP</span>
-                    </div>
-                  </div>
-                </div>
+                <img src="assets/home_screen.jpg" alt="Talaria app" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
               </div>
             </div>
           </div>
@@ -1311,7 +1267,7 @@
     <div class="container">
       <div class="footer-inner">
         <a href="#" class="footer-logo">
-          <img src="logo-icon.png" alt="Talaria" />
+          <img src="assets/logo-icon.png" alt="Talaria" />
           Talaria
         </a>
         <div class="footer-links">
@@ -1335,6 +1291,9 @@
         'nav.features':'Features','nav.modes':'Modes','nav.cities':'Cities','nav.factions':'Factions','nav.cta':'Download free',
         'hero.eyebrow':'Granada & Florence live now',
         'hero.h1':'Travel the world<br /><span class="text-grad">Own every city</span>',
+        'hero.fc1.label':'Monument unlocked',
+        'hero.fc2.label':'Route completed','hero.fc2.tag':'3 stops · 2.4 km',
+        'hero.fc3.label':'Achievement earned','hero.fc3.val':'First Conqueror','hero.fc3.tag':'Rare',
         'hero.sub':'Talaria turns every city into a videogame. Discover monuments with audio guides, follow curated routes, earn achievements, and compete for territory — across three gameplay modes built for real explorers.',
         'hero.btn_primary':'Download free','hero.btn_secondary':'See features →',
         'hero.trust':'<strong>Hundreds of explorers</strong> already conquering the world',
@@ -1399,6 +1358,9 @@
         'nav.features':'Características','nav.modes':'Modos','nav.cities':'Ciudades','nav.factions':'Facciones','nav.cta':'Descargar gratis',
         'hero.eyebrow':'Granada y Florencia ya disponibles',
         'hero.h1':'Recorre el mundo<br /><span class="text-grad">Conquista cada ciudad</span>',
+        'hero.fc1.label':'Monumento desbloqueado',
+        'hero.fc2.label':'Ruta completada','hero.fc2.tag':'3 paradas · 2,4 km',
+        'hero.fc3.label':'Logro conseguido','hero.fc3.val':'Primer Conquistador','hero.fc3.tag':'Poco común',
         'hero.sub':'Talaria convierte cada ciudad en un videojuego. Descubre monumentos con audioguías, sigue rutas a pie, desbloquea logros y compite por el control del territorio — en tres modos diseñados para exploradores de verdad.',
         'hero.btn_primary':'Descargar gratis','hero.btn_secondary':'Ver más →',
         'hero.trust':'<strong>Cientos de exploradores</strong> ya están conquistando el mundo',
