@@ -890,7 +890,7 @@
       <div class="trust-item"><span class="trust-dot"></span><span data-i18n="trust.monuments">Historical monuments</span></div>
       <div class="trust-item"><span class="trust-dot"></span><span data-i18n="trust.cities">Cities worldwide</span></div>
       <div class="trust-item"><span class="trust-dot"></span><span data-i18n="trust.live">Conquer cities</span></div>
-      <div class="trust-item"><span class="trust-dot"></span><span data-i18n="trust.privacy">Privacy first</span></div>
+      <div class="trust-item"><span class="trust-dot"></span><span data-i18n="trust.langs">English & Spanish · 5+ languages soon</span></div>
     </div>
   </div>
 
@@ -1123,7 +1123,7 @@
             <!-- Monument card: Baptistery -->
             <div style="flex:1;min-width:190px;background:#fafafa;border-radius:14px;padding:14px 16px;border:1px solid var(--border);">
               <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:6px;margin-bottom:7px;">
-                <div style="font-size:13px;font-weight:700;color:var(--neutral-900);line-height:1.3;">Baptistery of San Giovanni</div>
+                <div style="font-size:13px;font-weight:700;color:var(--neutral-900);line-height:1.3;" data-i18n="mon.bap.name">Baptistery of San Giovanni</div>
                 <div style="flex-shrink:0;background:var(--primary-200);color:var(--primary-800);font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;" data-i18n="mon.type.church">Church</div>
               </div>
               <p style="font-size:11px;color:var(--neutral-500);line-height:1.5;margin-bottom:11px;" data-i18n="mon.bap.desc">Florence's oldest building, famous for Ghiberti's Gates of Paradise</p>
@@ -1187,7 +1187,7 @@
           </div>
           <div class="city-body">
             <span class="city-flag">🇮🇹</span>
-            <div class="city-name">Florence</div>
+            <div class="city-name" data-i18n="cities.florence.name">Florence</div>
             <div class="city-country" data-i18n="cities.florence.country">Tuscany, Italy</div>
             <div class="city-stats">
               <div><span class="cstat-num">30+</span><span class="cstat-lbl" data-i18n="cities.lbl.monuments">Monuments</span></div>
@@ -1265,26 +1265,26 @@
       </div>
       <div class="factions-grid" style="margin-top:48px;">
         <div class="faction-card fc-blue reveal">
-          <div class="faction-initial" style="background:var(--secondary-500);">Ex</div>
-          <div class="faction-name" style="color:var(--secondary-500);">Explorers</div>
+          <div class="faction-initial" style="background:var(--secondary-500);" data-i18n="fac.exp.init">Ex</div>
+          <div class="faction-name" style="color:var(--secondary-500);" data-i18n="fac.exp.name">Explorers</div>
           <p class="faction-tagline" data-i18n="fac.exp.tagline">First to discover, first to conquer. Reward the brave.</p>
           <span class="faction-pill" style="background:var(--secondary-200);color:var(--secondary-800);" data-i18n="fac.exp.tag">Discovery Bonus</span>
         </div>
         <div class="faction-card fc-green reveal">
-          <div class="faction-initial" style="background:var(--quinary-600);">Gu</div>
-          <div class="faction-name" style="color:var(--quinary-600);">Guardians</div>
+          <div class="faction-initial" style="background:var(--quinary-600);" data-i18n="fac.gua.init">Gu</div>
+          <div class="faction-name" style="color:var(--quinary-600);" data-i18n="fac.gua.name">Guardians</div>
           <p class="faction-tagline" data-i18n="fac.gua.tagline">Defend every site, protect every line, hold forever.</p>
           <span class="faction-pill" style="background:var(--quinary-200);color:var(--quinary-600);" data-i18n="fac.gua.tag">Fortress Stance</span>
         </div>
         <div class="faction-card fc-amber reveal">
-          <div class="faction-initial" style="background:var(--tertiary-500);">Pi</div>
-          <div class="faction-name" style="color:var(--tertiary-800);">Pioneers</div>
+          <div class="faction-initial" style="background:var(--tertiary-500);" data-i18n="fac.pio.init">Pi</div>
+          <div class="faction-name" style="color:var(--tertiary-800);" data-i18n="fac.pio.name">Pioneers</div>
           <p class="faction-tagline" data-i18n="fac.pio.tagline">Build paths others will follow. Leave your mark.</p>
           <span class="faction-pill" style="background:var(--tertiary-200);color:var(--tertiary-800);" data-i18n="fac.pio.tag">Builder Momentum</span>
         </div>
         <div class="faction-card fc-pink reveal">
-          <div class="faction-initial" style="background:var(--primary-500);">Se</div>
-          <div class="faction-name" style="color:var(--primary-500);">Seekers</div>
+          <div class="faction-initial" style="background:var(--primary-500);" data-i18n="fac.see.init">Se</div>
+          <div class="faction-name" style="color:var(--primary-500);" data-i18n="fac.see.name">Seekers</div>
           <p class="faction-tagline" data-i18n="fac.see.tagline">Hidden truths, invisible edges, tactical advantage.</p>
           <span class="faction-pill" style="background:var(--primary-200);color:var(--primary-800);" data-i18n="fac.see.tag">Scout Efficiency</span>
         </div>
@@ -1336,7 +1336,7 @@
         'hero.sub':'Talaria is an interactive tourism guide that brings every city’s heritage to life. Discover monuments through professional audio guides, follow curated cultural routes, and explore at your own pace, for a richer and more enjoyable way to experience the places you visit.',
         'hero.btn_primary':'Download free','hero.btn_secondary':'See features →',
         'hero.trust':'<strong>Hundreds of explorers</strong> already conquering the world',
-        'trust.label':'Built for real explorers','trust.monuments':'Historical monuments','trust.cities':'Cities worldwide','trust.live':'Conquer cities','trust.privacy':'Privacy first',
+        'trust.label':'Built for real explorers','trust.monuments':'Historical monuments','trust.cities':'Cities worldwide','trust.live':'Conquer cities','trust.privacy':'Privacy first','trust.langs':'English & Spanish · 5+ languages soon',
         'feat.eyebrow':'Everything in one app','feat.title':'More than a map<br />A travel companion',
         'feat.sub':'Talaria combines a rich monument guide, curated city routes, gamified achievements, and a year-in-review recap, all powered by real exploration.',
         'feat.01.title':'Monument Guide','feat.01.desc':'Unlock detailed stories, history, and cultural context for hundreds of monuments, unlocked automatically as you visit them in person.',
@@ -1370,11 +1370,11 @@
         'bento.daily.xplbl':'Monuments with audio guide','bento.daily.title':'A growing catalogue','bento.daily.desc':'New monuments, audio guides and cultural routes added regularly across every city in the app.',
         'bento.content.label':'Content','bento.content.title':'Rich Monument Content','bento.content.desc':'Every monument comes with deep editorial content: historical context, architectural details, and cultural significance, all unlocked the moment you arrive in person.',
         'mon.type.church':'Church','mon.audio':'Audio guide',
-        'mon.bap.desc':"Florence's oldest building, famous for Ghiberti's Gates of Paradise",
+        'mon.bap.name':'Baptistery of San Giovanni','mon.bap.desc':"Florence's oldest building, famous for Ghiberti's Gates of Paradise",
         'mon.croce.desc':'Temple of Italian Glories, burial place of Michelangelo and Galileo',
         'cities.eyebrow':'Available cities','cities.title':'Start your journey here','cities.sub':"Talaria is live in two of Europe's most beautiful cities, with many more on the way. Every city is hand-curated by our team.",
         'cities.live':'Live now','cities.soon_badge':'Coming soon',
-        'cities.granada.country':'Andalucía, Spain','cities.florence.country':'Tuscany, Italy',
+        'cities.granada.country':'Andalucía, Spain','cities.florence.name':'Florence','cities.florence.country':'Tuscany, Italy',
         'cities.more.name':'More cities','cities.more.country':'Europe & beyond','cities.more.desc':'Rome, Paris, Lisbon, Seville and many more, each hand-curated by our team.',
         'cities.lbl.monuments':'Monuments','cities.lbl.routes':'Routes','cities.lbl.achievements':'Achievements',
         'how.eyebrow':'How Talaria works','how.title':'Simple to start<br />Impossible to stop',
@@ -1384,6 +1384,7 @@
         'how.s4.counter':'Step 04','how.s4.title':'Conquer the city','how.s4.desc':'Join a faction, plant flags, and build territorial influence. Coordinate with your Crown to dominate the leaderboard.',
         'fac.eyebrow':'Choose your Crown','fac.title':'Four factions<br />One winner per city',
         'fac.sub':'In conquest mode you join a faction, your Crown. Compete alongside players worldwide. One free change in your first 7 days.',
+        'fac.exp.name':'Explorers','fac.exp.init':'Ex','fac.gua.name':'Guardians','fac.gua.init':'Gu','fac.pio.name':'Pioneers','fac.pio.init':'Pi','fac.see.name':'Seekers','fac.see.init':'Se',
         'fac.exp.tagline':'First to discover, first to conquer. Reward the brave.','fac.exp.tag':'Discovery Bonus',
         'fac.gua.tagline':'Defend every site, protect every line, hold forever','fac.gua.tag':'Fortress Stance',
         'fac.pio.tagline':'Build paths others will follow. Leave your mark.','fac.pio.tag':'Builder Momentum',
@@ -1403,7 +1404,7 @@
         'hero.sub':'Talaria es una guía turística interactiva que da vida al patrimonio de cada ciudad. Descubre monumentos con audioguías, recorre rutas culturales seleccionadas y explora a tu propio ritmo. Es una forma más rica y cercana de vivir los lugares que visitas.',
         'hero.btn_primary':'Descargar gratis','hero.btn_secondary':'Ver más →',
         'hero.trust':'<strong>Cientos de exploradores</strong> ya están conquistando el mundo',
-        'trust.label':'Hecho para exploradores de verdad','trust.monuments':'Monumentos históricos','trust.cities':'Ciudades de todo el mundo','trust.live':'Conquista ciudades','trust.privacy':'Tu privacidad primero',
+        'trust.label':'Hecho para exploradores de verdad','trust.monuments':'Monumentos históricos','trust.cities':'Ciudades de todo el mundo','trust.live':'Conquista ciudades','trust.privacy':'Tu privacidad primero','trust.langs':'Inglés y español · +5 idiomas próximamente',
         'feat.eyebrow':'Todo en una sola app','feat.title':'Tu app de exploración<br />con alma de videojuego',
         'feat.sub':'Guía de monumentos, audioguías, rutas a pie, logros y resumen anual, todo basado en la exploración real de la ciudad.',
         'feat.01.title':'Guía de Monumentos','feat.01.desc':'La historia y el contexto cultural de cada monumento se desbloquean en el momento exacto en que llegas en persona.',
@@ -1437,11 +1438,11 @@
         'bento.daily.xplbl':'Monumentos con audioguía','bento.daily.title':'Un catálogo en crecimiento','bento.daily.desc':'Nuevos monumentos, audioguías y rutas culturales se añaden con regularidad en todas las ciudades de la app.',
         'bento.content.label':'Contenido','bento.content.title':'Contenido de cada Monumento','bento.content.desc':'Historia, arquitectura y contexto cultural de cada monumento, y todo se desbloquea en el momento en que llegas al lugar.',
         'mon.type.church':'Iglesia','mon.audio':'Audioguía',
-        'mon.bap.desc':'El edificio más antiguo de Florencia, famoso por las Puertas del Paraíso de Ghiberti',
+        'mon.bap.name':'Baptisterio de San Juan','mon.bap.desc':'El edificio más antiguo de Florencia, famoso por las Puertas del Paraíso de Ghiberti',
         'mon.croce.desc':'El templo de las Glorias Italianas, donde reposan Miguel Ángel y Galileo',
         'cities.eyebrow':'Ciudades disponibles','cities.title':'Empieza tu aventura aquí','cities.sub':'Talaria ya está en dos de las ciudades más bonitas de Europa, con muchas más en camino. Cada ciudad está seleccionada y preparada por nuestro equipo.',
         'cities.live':'Disponible ya','cities.soon_badge':'Próximamente',
-        'cities.granada.country':'Andalucía, España','cities.florence.country':'Toscana, Italia',
+        'cities.granada.country':'Andalucía, España','cities.florence.name':'Florencia','cities.florence.country':'Toscana, Italia',
         'cities.more.name':'Más ciudades','cities.more.country':'Europa y más allá','cities.more.desc':'Roma, París, Lisboa, Sevilla y muchas más, todas preparadas a mano por nuestro equipo.',
         'cities.lbl.monuments':'Monumentos','cities.lbl.routes':'Rutas','cities.lbl.achievements':'Logros',
         'how.eyebrow':'Cómo funciona Talaria','how.title':'Fácil de empezar<br />Difícil de dejar',
@@ -1451,6 +1452,7 @@
         'how.s4.counter':'Paso 04','how.s4.title':'Conquista la ciudad','how.s4.desc':'Planta banderas, gana influencia y coordínate con tu facción para dominar el ranking.',
         'fac.eyebrow':'Elige tu Corona','fac.title':'Cuatro facciones<br />Un solo ganador por ciudad',
         'fac.sub':'En el modo conquista eliges una facción, tu Corona. Compites junto a jugadores de todo el mundo, con un cambio gratuito durante los primeros 7 días.',
+        'fac.exp.name':'Exploradores','fac.exp.init':'Ex','fac.gua.name':'Guardianes','fac.gua.init':'Gu','fac.pio.name':'Pioneros','fac.pio.init':'Pi','fac.see.name':'Buscadores','fac.see.init':'Bu',
         'fac.exp.tagline':'Llega antes que nadie, conquista antes que nadie. La velocidad lo es todo','fac.exp.tag':'Bonus Explorador',
         'fac.gua.tagline':'Defiende lo tuyo, protege a los tuyos. Que no te muevan','fac.gua.tag':'Posición Defensiva',
         'fac.pio.tagline':'Abre caminos que otros seguirán. Deja tu huella en el mapa','fac.pio.tag':'Impulso Pionero',
